@@ -28,10 +28,10 @@ public class Config {
     private List<String> admins;
     private List<String> channels;
 
-    public void loadConfiguration(){
+    public void loadConfiguration() {
         try {
             setConf(new PropertiesConfiguration(new File(System.getProperty("user.home") + File.separator + ".LukaBOT45", "config.yml")));
-            if(!getConf().getFile().exists()){
+            if (!getConf().getFile().exists()) {
                 getConf().getFile().getParentFile().mkdirs();
                 getConf().setProperty("SERVER", "irc.esper.net");
                 getConf().setProperty("BOT-NICKNAME", "Alphabot");
