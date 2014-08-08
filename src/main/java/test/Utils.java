@@ -2,7 +2,7 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.lukario45.lukabot45.test;
+package test;
 
 import java.io.BufferedReader;
 import java.io.DataInputStream;

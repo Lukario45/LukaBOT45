@@ -4,7 +4,7 @@
  */
 package com.lukario45.LukaBot45.commands;
 
-import com.lukario45.LukaBot45.test.Command;
+import test.Command;
 import org.pircbotx.Channel;
 import org.pircbotx.hooks.events.MessageEvent;
 

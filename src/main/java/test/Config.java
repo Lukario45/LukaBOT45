@@ -1,4 +1,4 @@
-package com.lukario45.lukabot45.test;
+package test;
 
 import java.io.File;
 import java.io.IOException;
