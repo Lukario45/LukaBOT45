@@ -22,6 +22,7 @@ public class Bot {
     private static Config conf;
 
     public static void main(String[] args) {
+        //Set logging settings for log4j because of the new update
         System.setProperty(SimpleLogger.SHOW_DATE_TIME_KEY, "true");
         System.setProperty(SimpleLogger.DATE_TIME_FORMAT_KEY, "[HH:mm:ss]");
         System.setProperty(SimpleLogger.SHOW_THREAD_NAME_KEY, "false");
@@ -41,14 +42,14 @@ public class Bot {
                 cmd.setConfig(conf);
                 CommandRegistry.register(cmd);
             }
-            //Set logging settings for log4j because of the new update
-            DefineYML.loadDefine();
+            DefineYML.load();
             Configuration.Builder<PircBotX> config = new Configuration.Builder<PircBotX>();
             config.setServer(conf.getIrcServer(), 6667);
             config.setVersion(conf.getIdent());
             config.setLogin(conf.getRealname());
             config.setName(conf.getNickname());
             config.setFinger("Alphabot V2.0 BETA");
+            //attempt to use UTF-8 if possible
             config.setEncoding(Charset.isSupported("UTF-8") ? Charset.forName("UTF-8") : Charset.defaultCharset());
             config.setNickservPassword(conf.getNickservPassword());
             config.setAutoReconnect(true);

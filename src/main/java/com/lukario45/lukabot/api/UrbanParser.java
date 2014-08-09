@@ -18,16 +18,11 @@ public class UrbanParser {
     public static String search(String term, String ent) throws IOException {
 
         int entry;
-
         entry = Integer.parseInt(ent) - 1;
         if (entry == -1) {
             entry = 0;
         }
 
-
-
-        // URL u = new URL("http://www.api.urbandictionary.com/define.php?term=" + term);
-        // BufferedReader re = new BufferedReader(new InputStreamReader(u.openStream()));
         Document doc = Jsoup.connect("http://www.api.urbandictionary.com/define.php?term=" + term).get();
         Elements words = doc.select("div.word");
         Elements definition = doc.select("div.meaning");
@@ -35,8 +30,6 @@ public class UrbanParser {
         String word = words.get(entry).text();
         String meaning = definition.get(entry).text();
         String ex = example.get(entry).text();
-        String urbanDictionary = entry + ":" + word + ":" + meaning + ":" + ex;
-        return urbanDictionary;
-
+        return entry + ":" + word + ":" + meaning + ":" + ex;
     }
 }

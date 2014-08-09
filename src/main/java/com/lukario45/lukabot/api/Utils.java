@@ -14,15 +14,15 @@ import java.net.Socket;
 import java.net.URL;
 import java.net.URLConnection;
 import java.net.UnknownHostException;
+import java.util.ArrayList;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.io.File;
+
+import org.pircbotx.Channel;
 import org.pircbotx.Colors;
 import org.pircbotx.User;
-//import com.googleapis.ajax.common.PagedList;
-//import com.googleapis.ajax.schema.WebResult;
-//import com.googleapis.ajax.services.GoogleSearchQueryFactory;
-//import com.googleapis.ajax.services.WebSearchQuery;
+import org.pircbotx.UserLevel;
 
 /**
  *
@@ -30,18 +30,8 @@ import org.pircbotx.User;
  */
 public class Utils {
 
-    /**
-     * @param user the user object to send the notice too
-     * @param notice the string to notice the user with
-     */
-    public static void sendNotice(User user, String notice) {
-
-    }
-
-
 
     public static String htmlFormat(String s) {
-        System.out.println(String.valueOf(new File("c:/").exists()));
         return s.replaceAll("<b>", "").replace("</b>", "").replace("&#39;", "'").replaceAll("&quot;", "'").replaceAll("   ", " ").replaceAll("&amp;", "&");
     }
     /* public static String google(String s) {
@@ -61,7 +51,7 @@ public class Utils {
      }**/
 
     public static String removeBrackets(String s) {
-        return s.replaceAll("[\\['']|['\\]'']", "");
+        return s.replace("[", "").replace("]", "");
     }
 
     /**
@@ -130,28 +120,7 @@ public class Utils {
     }
 
     public static String checkServerStatus(InetAddress i) {
-        String returns;
-        try {
-            Socket s = new Socket(i, 25565);
-            DataInputStream SS_BF = new DataInputStream(s.getInputStream());
-            DataOutputStream d = new DataOutputStream(s.getOutputStream());
-            d.write(0xFE);
-            SS_BF.readByte();
-            short length = SS_BF.readShort();
-            StringBuilder sb = new StringBuilder();
-            for (int in = 0; in < length; in++) {
-                char ch = SS_BF.readChar();
-                sb.append(ch);
-            }
-            String all = sb.toString().trim();
-            String[] args1 = all.split("�");
-            returns = "MOTD: " + args1[0] + "   players: [" + args1[1] + "/" + args1[2] + "]";
-        } catch (UnknownHostException e1) {
-            returns = "the host you specified is unknown. check your settings.";
-        } catch (IOException e1) {
-            returns = "sorry, we couldn't reach this server, make sure that the server is up and has query enabled.";
-        }
-        return returns;
+        return checkServerStatus(i, 25565);
     }
 
     public static String checkServerStatus(InetAddress i, int port) {
@@ -213,5 +182,19 @@ public class Utils {
         } else {
             return false;
         }
+    }
+
+    public static int getRank(Channel chan, User user) {
+        ArrayList<Integer> levels = new ArrayList<>();
+        int highest = -1;
+        for (UserLevel level : user.getUserLevels(chan)) {
+            levels.add(level.ordinal());
+        }
+        for (int level : levels) {
+            if (highest < level) {
+                highest = level;
+            }
+        }
+        return highest;
     }
 }

@@ -30,7 +30,9 @@ public class MessageListener extends ListenerAdapter {
             }
             String[] args = Arrays.copyOfRange(event.getMessage().split(" "), 1, event.getMessage().split(" ").length);
             Command cmd = CommandRegistry.getCommand(command);
-            cmd.execute(event, args, isPublic);
+            if(!cmd.execute(event, args, isPublic)){
+                event.getUser().send().notice("Invalid syntax! " + cmd.getHelp());
+            }
         }
     }
 }

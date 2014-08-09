@@ -22,19 +22,14 @@ public class Kill extends Command {
     @Override
     public boolean execute(MessageEvent e, String[] args, boolean isPublic) {
         if(config.getAdmins().contains(e.getUser().getNick())) {
-
-
             for (Channel chan : e.getBot().getUserChannelDao().getAllChannels()) {
                 chan.send().part("Bot Killed!");
             }
             e.getBot().stopBotReconnect();
             e.getBot().sendIRC().quitServer("Shutting down...");
-            return true;
-        }
-        else{
+        }else{
             e.respond(config.getPermissionDenied());
-            return false;
         }
-
+        return true;
     }
 }
