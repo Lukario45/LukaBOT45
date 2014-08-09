@@ -27,10 +27,10 @@ public class Newdefine extends Command {
         }
         String word = e.getMessage().split(" ")[1];
         String allargs = sb.toString().trim();
-        Boolean exists = DefineYML.ifExists(word);
+        Boolean exists = DefineYML.hasDefinition(word);
 
         if (!exists && c.getAdmins().contains(e.getUser().getNick())) {
-            DefineYML.addDefine(word.toLowerCase(), allargs);
+            DefineYML.addDefinition(word.toLowerCase(), allargs);
             e.respond("The Definition for " + word.toLowerCase() + " is " + allargs);
             return true;
 
