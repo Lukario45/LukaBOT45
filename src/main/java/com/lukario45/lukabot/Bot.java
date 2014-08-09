@@ -4,6 +4,7 @@ import com.lukario45.lukabot.Listeners.MessageListener;
 import com.lukario45.lukabot.api.Command;
 import com.lukario45.lukabot.api.CommandRegistry;
 import com.lukario45.lukabot.api.Config;
+import com.lukario45.lukabot.api.DefineYML;
 import org.pircbotx.Configuration;
 import org.pircbotx.PircBotX;
 import org.reflections.Reflections;
@@ -41,6 +42,7 @@ public class Bot {
                 CommandRegistry.register(cmd);
             }
             //Set logging settings for log4j because of the new update
+            DefineYML.loadDefine();
             Configuration.Builder<PircBotX> config = new Configuration.Builder<PircBotX>();
             config.setServer(conf.getIrcServer(), 6667);
             config.setVersion(conf.getIdent());

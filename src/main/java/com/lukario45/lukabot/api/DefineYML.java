@@ -9,6 +9,7 @@ import org.apache.commons.configuration.ConfigurationException;
 import org.apache.commons.configuration.PropertiesConfiguration;
 
 public class DefineYML {
+    public static String defin;
 
     private static PropertiesConfiguration define;
     public static File def = new File("C:\\Users\\Kevin\\.LukaBOT45\\define.yml");
@@ -51,7 +52,10 @@ public class DefineYML {
 
 
     }
-    static String defin;
+
+    public static String getDefin(){
+        return defin;
+    }
 
     public static void getDefine(String word) {
         defin = define.getString(word);
