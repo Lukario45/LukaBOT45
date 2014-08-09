@@ -22,6 +22,7 @@ package com.lukario45.lukabot.commands;
 import bsh.EvalError;
 import com.lukario45.lukabot.api.*;
 import org.apache.commons.lang3.StringUtils;
+import org.pircbotx.User;
 import org.pircbotx.hooks.events.MessageEvent;
 
 import java.util.logging.Level;
@@ -66,6 +67,7 @@ public class Exec extends Command {
             //StringBuilder sb = new StringBuilder();
             if (args.length >= 1) {
                 try {
+
                     interpreter.set("event", event);
                     interpreter.set("bot", event.getBot());
                     interpreter.set("chan", event.getChannel());
@@ -84,6 +86,8 @@ public class Exec extends Command {
                     Logger.getLogger(Exec.class.getName()).log(Level.SEVERE, null, ex);
                     event.getChannel().send().message(ex.toString());
                     return true;
+
+
                 }
             }
         }
