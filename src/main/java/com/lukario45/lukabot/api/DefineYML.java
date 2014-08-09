@@ -13,7 +13,7 @@ public class DefineYML {
     private static PropertiesConfiguration define;
     public static void load(){
         try{
-            define = new PropertiesConfiguration(new File(System.getProperty("user.home") + ".LukaBOT45/define.yml"));
+            define = new PropertiesConfiguration(new File(System.getProperty("user.home") + "/.LukaBOT45/define.yml"));
             System.out.println(define.getFile().getAbsolutePath());
             if (define.getFile().exists()) {
                 define.load(define.getFile());

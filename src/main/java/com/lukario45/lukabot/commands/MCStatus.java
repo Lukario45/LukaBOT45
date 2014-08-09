@@ -13,9 +13,9 @@ import java.net.URL;
 /**
  * Created by Kevin on 8/8/2014.
  */
-public class MCStatus extends Command {
+public class Mcstatus extends Command {
     Config c;
-    public MCStatus(){
+    public Mcstatus(){
         super("MCStatus","Checks Minecraft Servers", "MCStatus");
     }
     @Override
