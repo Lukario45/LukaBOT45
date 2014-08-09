@@ -14,7 +14,7 @@ import java.util.Arrays;
 public class Newdefine extends Command {
     Config c;
     public Newdefine(){
-        super("newdefine","LukaBots Definition maker!"+"newdefine word definition");
+        super("newdefine","LukaBots Definition maker!", "newdefine word definition");
     }
     @Override
     public void setConfig(Config config) {
