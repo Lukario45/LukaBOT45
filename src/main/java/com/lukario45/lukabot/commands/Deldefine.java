@@ -21,20 +21,16 @@ public class Deldefine extends Command {
     @Override
     public boolean execute(MessageEvent e, String[] args, boolean isPublic) {
         if (c.getAdmins().contains(e.getUser().getNick())) {
-            StringBuilder sb = new StringBuilder();
-            String[] arguments = e.getMessage().split(" ");
-            for (int i = 2; i < arguments.length; i++) {
-                sb.append(arguments[i]).append(" ");
+            if(args.length == 1) {
+                String word = args[0];
+                DefineYML.delDefinition(word);
+                e.respond("Definition Deleted!");
+                return true;
             }
-            String word = e.getMessage().split(" ")[1];
-            DefineYML.delDefine(word);
-            e.respond("Definition Deleted!");
-            return true;
+            return false;
         } else {
             e.respond(c.getPermissionDenied());
-
-            return false;
+            return true;
         }
-
     }
 }
