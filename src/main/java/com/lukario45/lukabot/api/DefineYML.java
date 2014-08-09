@@ -10,62 +10,66 @@ import org.apache.commons.configuration.PropertiesConfiguration;
 
 public class DefineYML {
     public static String defin;
-
     private static PropertiesConfiguration define;
-    public static File def = new File("C:\\Users\\Kevin\\.LukaBOT45\\define.yml");
-
-    public static void loadDefine() throws ConfigurationException, IOException {
-        define = new PropertiesConfiguration(def);
-        if (def.exists()) {
-            System.out.println(def.getAbsolutePath());
-            define.load(def);
-        } else {
-            def.getParentFile().mkdirs();
-            def.createNewFile();
-            System.out.println(def.getAbsolutePath());
-            define.setFile(def);
-            define.load(def);
-
+    public static void load(){
+        try{
+            define = new PropertiesConfiguration(new File(System.getProperty("user.home") + ".LukaBOT45/define.yml"));
+            System.out.println(define.getFile().getAbsolutePath());
+            if (define.getFile().exists()) {
+                define.load(define.getFile());
+            } else {
+                if(!define.getFile().getParentFile().mkdirs() || define.getFile().createNewFile()){
+                    Logger.getLogger(DefineYML.class.getName()).log(Level.WARNING, "Couldn't create definition file, are you sure you have write access?");
+                }
+                define.load(define.getFile());
+            }
+        }catch (Exception ex){
+            ex.printStackTrace();
         }
     }
 
-    public static void addDefine(String args1, String args2) {
-
+    public static void addDefinition(String word, String definition) {
+        if(define.containsKey(word)){
+            define.clearProperty(word);
+        }
         try {
-            define.setProperty(args1, args2);
+            define.setProperty(word, definition);
             define.save();
+            define.refresh();
         } catch (ConfigurationException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         }
     }
 
-    public static void delDefine(String word) {
-
-        define.setProperty(word, null);
+    public static void delDefinition(String word) {
+        define.clearProperty(word);
         try {
             define.save();
+            define.refresh();
         } catch (ConfigurationException ex) {
             Logger.getLogger(DefineYML.class.getName()).log(Level.SEVERE, null, ex);
         }
-
-
-
     }
 
-    public static String getDefin(){
-        return defin;
+    public static String getDefinition(String word)
+    {
+        if(hasDefinition(word)){
+            return define.getString(word);
+        }
+        return null;
     }
 
-    public static void getDefine(String word) {
-        defin = define.getString(word);
 
-
-
+    public static boolean hasDefinition(String word) {
+        return define.containsKey(word);
     }
 
-    public static boolean ifExists(String word) {
-        return define.getString(word) != null;
-
+    public static void reload(){
+        try {
+            define.save();
+            define.refresh();
+        } catch (ConfigurationException e) {
+            e.printStackTrace();
+        }
     }
 }
