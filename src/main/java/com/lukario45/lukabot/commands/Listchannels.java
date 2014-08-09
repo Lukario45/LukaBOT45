@@ -1,7 +1,7 @@
 package com.lukario45.lukabot.commands;
 
 /**
- * Created by Kevin on 8/8/2014.
+ * Created by zack6849 on 8/9/14.
  */
 public class Listchannels {
 }
