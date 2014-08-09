@@ -7,7 +7,9 @@ import org.pircbotx.hooks.events.MessageEvent;
 /**
  * Created by Kevin on 8/8/2014.
  */
+
 public class Eat extends Command {
+
     Config c;
     public Eat(){
         super("Eat", "Eat Something","eat arg");
@@ -17,15 +19,15 @@ public class Eat extends Command {
         this.c = config;
     }
 
+    /**
+     * And the award for the most useless command ever implemented into an IRC bot goes to....
+     */
     @Override
     public boolean execute(MessageEvent e, String[] args, boolean isPublic) {
         if (args.length == 1){
             e.getChannel().send().message(e.getUser().getNick() + " has eaten a " + args[0]);
             return true;
-        } else{
-            e.respond(getHelp());
-            return false;//t
         }
-
+        return false;
     }
 }
