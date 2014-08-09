@@ -22,18 +22,16 @@ public class Define extends Command {
 
     @Override
     public boolean execute(MessageEvent e, String[] args, boolean isPublic) {
-        String word = args[0];
-
-        DefineYML.getDefine(word.toLowerCase());
-
-        if (DefineYML.defin==null) {
-            e.respond("I do not have a definition for that :( sorry!");
-            return false;
-
-        } else {
-            e.respond(word + ": " + DefineYML.defin);
-            return true;
+        if(args.length == 1){
+         if(!DefineYML.hasDefinition(args[0])){
+             e.respond("Sorry, i don't have a definition for that! D:");
+         }else{
+             e.respond(args[0] + ": " + DefineYML.getDefinition(args[0]));
+         }
+         return true;
         }
+        //wrong args / usage, return false.
+        return false;
     }
 
 }
