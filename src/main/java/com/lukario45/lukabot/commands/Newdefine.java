@@ -3,6 +3,7 @@ package com.lukario45.lukabot.commands;
 import com.lukario45.lukabot.api.Command;
 import com.lukario45.lukabot.api.Config;
 import com.lukario45.lukabot.api.DefineYML;
+import com.lukario45.lukabot.api.Utils;
 import org.pircbotx.hooks.events.MessageEvent;
 
 /**
@@ -32,7 +33,7 @@ public class Newdefine extends Command {
             String allargs = sb.toString().trim();
             Boolean exists = DefineYML.hasDefinition(word);
 
-            if (!exists && c.getAdmins().contains(e.getUser().getNick())) {
+            if (!exists && Utils.checkPerms(e ,c)) {
                 DefineYML.addDefinition(word.toLowerCase(), allargs);
                 e.respond("The Definition for " + word.toLowerCase() + " is " + allargs);
                 return true;

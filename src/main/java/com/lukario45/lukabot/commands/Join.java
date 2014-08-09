@@ -21,7 +21,7 @@ this.config = config;
     @Override
     public boolean execute(MessageEvent e, String[] args, boolean isPublic) {
         if (args.length == 1) {
-            if (config.getAdmins().contains(e.getUser().getNick())) {
+            if (Utils.checkPerms(e, config)) {
                 e.respond("k <3");
                 e.getBot().sendIRC().joinChannel(args[0]);
                 e.getBot().getUserChannelDao().getChannel(args[0]);
