@@ -11,9 +11,9 @@ import java.util.List;
 /**
  * Created by Kevin on 8/8/2014.
  */
-public class ListOPS extends Command {
+public class Listops extends Command {
     Config config;
-    public ListOPS(){
+    public Listops(){
         super("ListOPS","List Channel Operators", "ListOPS");
     }
     @Override
