@@ -55,7 +55,7 @@ public abstract class Command {
      * @param event the MessageEvent that triggered the command
      * @return true upon success, false upon failure
      */
-    public abstract boolean execute(MessageEvent event, String[] args, boolean isPublic);
+    public abstract boolean execute(MessageEvent e, String[] args, boolean isPublic);
 
     public String getName() {
         return name;

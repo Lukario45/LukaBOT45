@@ -34,14 +34,14 @@ public class Config {
             if (!getConf().getFile().exists()) {
                 getConf().getFile().getParentFile().mkdirs();
                 getConf().setProperty("SERVER", "irc.esper.net");
-                getConf().setProperty("BOT-NICKNAME", "Alphabot");
+                getConf().setProperty("BOT-NICKNAME", "LukaBOT45");
                 getConf().setProperty("BOT-IDENT", "Bot");
-                getConf().setProperty("BOT-REALNAME", "Alphabot");
+                getConf().setProperty("BOT-REALNAME", "LukaBOT45");
                 getConf().setProperty("IDENTIFY-WITH-NICKSERV", true);
                 getConf().setProperty("NICKSERV-PASS", "password");
                 getConf().setProperty("CHANNELS", "#alphacraft #alphabot");
                 getConf().setProperty("VERIFY-ADMIN-NICKS", true);
-                getConf().setProperty("ADMIN-NICKS", "zack6849 zack6849|Offline");
+                getConf().setProperty("ADMIN-NICKS", "zack6849 zack6849|Offline Lukario45 Lukario45-BNC" );
                 getConf().setProperty("PUBLIC-IDENTIFIER", "$");
                 getConf().setProperty("NOTICE-IDENTIFIER", "|");
                 getConf().setProperty("PERMISSIONS-DENIED", "Sorry you lack the necessary permissions to perform that action.");
