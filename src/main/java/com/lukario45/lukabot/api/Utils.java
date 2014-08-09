@@ -23,12 +23,14 @@ import org.pircbotx.Channel;
 import org.pircbotx.Colors;
 import org.pircbotx.User;
 import org.pircbotx.UserLevel;
+import org.pircbotx.hooks.events.MessageEvent;
 
 /**
  *
  * @author zack6849(zcraig29@gmail.com)
  */
 public class Utils {
+
 
 
     public static String htmlFormat(String s) {
@@ -77,6 +79,19 @@ public class Utils {
     /*
      * @return a string with the status.
      */
+    public static boolean checkPerms(MessageEvent e, Config c){
+        User user = e.getUser();
+      if (c.getAdmins().contains(user.getNick())){
+          if (user.isVerified()){
+              return true;
+          } else {
+              return false;
+          }
+
+      }else {
+          return false;
+      }
+    }
     public static String checkMojangServers() {
         String returns = null;
         try {
